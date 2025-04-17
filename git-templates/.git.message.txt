@@ -1,0 +1,7 @@
+# <type>(<scope>): <subject>
+# 
+# example: feat(auth): add login endpoint
+# 
+# Body (optional, go into detail)
+#
+# Footer (optional, references, breaking changes)
