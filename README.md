@@ -56,3 +56,36 @@ else
     exit 1
 fi
 ```
+
+### Pre-Commit Hook
+
+1. Go to .git/hooks folder
+
+2. Create a pre-commit file
+
+3. Enter hook code content
+
+```
+#!/bin/sh
+
+# Get current branch name
+branch_name=$(git rev-parse --abbrev-ref HEAD)
+
+# Define branch name pattern
+pattern="^(feature|fix|chore|docs|refactor|test|style)/[a-z0-9\-]+$"
+
+if echo "$branch_name" | grep -qE "$pattern"; then
+    echo "✅ Branch name '$branch_name' follows the convention."
+    exit 0
+else
+    echo "❌ Branch name '$branch_name' does not follow the convention."
+    echo ""
+    echo "Expected format:"
+    echo "  <type>/<name>"
+    echo "Examples:"
+    echo "  feature/login-page"
+    echo "  fix/api-crash"
+    echo "  chore/cleanup"
+    exit 1
+fi
+```
